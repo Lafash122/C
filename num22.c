@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main(){
+int main() {
     int ax, ay, bx, by, cx, cy, dx, dy;
     int botx, boty, topx, topy;
     scanf("%d %d %d %d %d %d %d %d", &ax, &ay, &bx, &by, &cx, &cy, &dx, &dy);
@@ -8,7 +8,7 @@ int main(){
         botx = ax;
     else
         botx = cx;
-
+    
     if (ay < cy)
         boty = ay;
     else
