@@ -8,6 +8,5 @@ int main() {
     else
         printf("%d", n - m + k - 1);
 
-
     return 0;
 }
