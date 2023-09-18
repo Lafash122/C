@@ -12,7 +12,6 @@ int main(){
         a = a + (float)(pow(-1, i) * (pow(x, i) / b));
         i++;
     }
-    printf("\n");
     printf("%f", a);
 
     return 0;
