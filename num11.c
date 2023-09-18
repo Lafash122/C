@@ -9,5 +9,6 @@ int main() {
     int e = d * d;
     int f = e * d * c;
     printf("%d", f);
+
     return 0;
 }
