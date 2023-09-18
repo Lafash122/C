@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main(){
+int main() {
     int k, m, n;
     scanf("%d %d %d", &n, &k, &m);
     if (m - k - 1 < n - m + k - 1)
