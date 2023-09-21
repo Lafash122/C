@@ -1,1 +1,1 @@
-# Solutions of the tasks on Tuesday
+<h3>Solutions of the tasks on Programming lessons</h3>
