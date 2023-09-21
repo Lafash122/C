@@ -2,7 +2,7 @@
 #include <malloc.h>
 #include <math.h>
 
-int square(int x) {
+int square(int x) {                                     //The function that allow to search a square number
     if (pow((int) sqrt(x), 2) == x) return 1;
     else return 0;
 }
