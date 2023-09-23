@@ -2,7 +2,7 @@
 #include <malloc.h>
 #include <time.h>
 
-void fillrand(int *arr, int len) {
+void fillrand(int *arr, int len) {            //The function that randomly fill array
     srand(time(NULL));
     for (int i = 0; i < len; i++)
         *(arr + i) = rand();
