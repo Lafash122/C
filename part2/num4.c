@@ -5,7 +5,7 @@ int max(int x, int y) {                                        //The function th
     if (x > y)
         return x;
     else
-    return y;
+        return y;
 }
 
 int main() {
