@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-//The recursion function that allow to search
+//The recursive function that allow to search
 int sumel(int num) {
     if (num == 0) return 0;
     else return sumel(num / 10) + (num % 10);
