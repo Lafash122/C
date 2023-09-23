@@ -17,9 +17,9 @@ int main() {
         scanf("%d", a + i);
 
     el = *a;
-    for (i = 1; i < n; i++) {
+    for (i = 1; i < n; i++)
         el = max(el, *(a + i));
-    }
+    
     printf("%d", el);
     free(a);
 
