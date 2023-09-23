@@ -2,7 +2,7 @@
 
 //The recursion function that allow to search the sum of the digits of the number
 int sumel(int num) {
-    if (num == 0) return 0;
+    if (num <= 9) return num;
     else return sumel(num / 10) + (num % 10);
 }
 
