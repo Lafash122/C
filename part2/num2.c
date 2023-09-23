@@ -3,8 +3,10 @@
 
 int gcd(int a, int b) {                         //The function that allow to search the greatest common division
     while (a != 0 && b != 0) {
-        if (a > b) a = a % b;
-        else b = b % a;
+        if (a > b)
+            a = a % b;
+        else
+            b = b % a;
     }
     return a + b;
 }
