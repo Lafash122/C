@@ -2,13 +2,11 @@
 #include <malloc.h>
 #include <math.h>
 
-//The function that allow to search a length between two points
-float len(float x1, float x2, float y1, float y2) {
+float len(float x1, float x2, float y1, float y2) {        //The function that allow to search a length between two points
     return sqrt(pow((x2 - x1), 2) + pow((y2 - y1), 2));
 }
 
-//The function that allow to search an area of triangle by three sides
-float area(float a, float b, float c) {
+float area(float a, float b, float c) {                    //The function that allow to search an area of triangle by three sides
     float p = (a + b + c) / 2;
     return sqrt(p * (p - a) * (p - b) * (p - c));
 }
