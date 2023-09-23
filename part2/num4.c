@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <malloc.h>
 
-int max(int x, int y) {
+int max(int x, int y) {                                        //The function that allow to saerch a maximum element
     if (x > y) return x;
     else return y;
 }
