@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-//The recursion function that allow to search the sum of the digits of the number
-int sumel(int num) {
+int sumel(int num) {                            //The recursion function that allow to search the sum of the digits of the number
     if (num <= 9)
         return num;
     else
