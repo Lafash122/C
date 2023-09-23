@@ -3,8 +3,10 @@
 #include <math.h>
 
 int square(int x) {                                     //The function that allow to search a square number
-    if (pow((int) sqrt(x), 2) == x) return 1;
-    else return 0;
+    if (pow((int) sqrt(x), 2) == x)
+        return 1;
+    else
+        return 0;
 }
 
 int main() {
@@ -14,7 +16,8 @@ int main() {
     a = (int *) malloc(n * sizeof(int));
     for (i = 0; i < n; i++) {
         scanf("%d", a + i);
-        if (square(*(a + i)) == 1) cnt++;
+        if (square(*(a + i)) == 1)
+            cnt++;
     }
     printf("%d", cnt);
     free(a);
