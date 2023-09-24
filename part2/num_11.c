@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
 
-//The function that delete repeats from array
-void delrep(int *arr, int *len) {
+void delrep(int *arr, int *len) {                                //The function that delete repeats from array
     for (int i = 0; i < *len - 1; i++) {
         for (int j = i + 1; j < *len; j ++) {
             if (*(arr + i) == *(arr + j)){
