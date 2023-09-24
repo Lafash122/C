@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <malloc.h>
 
-int max(int x, int y) {                                         //The function that allow to search a maximum element
-    if (x > y)
-        return x;
+int maxel(int *arr, int len, int ind, int res) {        //The function that allow to search a maximum element
+    if (ind == len)
+        return res;
+    if (*(arr + ind) > res)
+        return maxel(arr, len, ind + 1, *(arr + ind));
     else
-        return y;
+        return maxel(arr, len, ind + 1, res);
 }
 
 int main() {
@@ -16,11 +18,7 @@ int main() {
     for (i = 0; i < n; i++)
         scanf("%d", a + i);
 
-    el = *a;
-    for (i = 1; i < n; i++)
-        el = max(el, *(a + i));
-    
-    printf("%d", el);
+    printf("%d", maxel(a, n, 0, *a));
     free(a);
 
     return 0;
