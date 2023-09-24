@@ -22,9 +22,9 @@ int main() {
         scanf("%f %f", x + i, y + i);
 
     for (i = 0; i < n - 2; i++) {
-        aside = len(*(x + i), *(x + i + 1), *(y + i), *(y + i + 1));
-        bside = len(*(x + i + 1), *(x + i + 2), *(y + i + 1), *(y + i + 2));
-        cside = len(*(x + i + 2), *(x + i), *(y + i + 2), *(y + i));
+        aside = len(x[0], x[i + 1], y[0], y[i + 1]);
+        bside = len(x[i + 1], x[i + 2], y[i + 1], y[i + 2]);
+        cside = len(x[i + 2], x[0], y[i + 2], y[0]);
         trarea = area(aside, bside, cside);
         sum = sum + trarea;
     }
