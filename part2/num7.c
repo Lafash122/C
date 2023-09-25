@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int droot(int num) {                        //The recursive recursion function that allow to search the digital root
+int droot(int num) {                        //The recursive function that allow to search the digital root
     if (num <= 9)
         return num;
     else
