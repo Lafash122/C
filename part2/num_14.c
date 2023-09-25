@@ -1,8 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
 
-//The function that allow to spiral fill the array
-void spiralfill(int **arr, int len) {
+void spiralfill(int **arr, int len) {                //The function that allow to spiral fill the array
     int line, num = 1, i;
     for (line = 0; line < len / 2; line++) {
         for (i = line; i < len - line; i++)
