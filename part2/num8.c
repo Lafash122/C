@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 
-int primal(int num, int del) {                //The function that allow to define prime numbers
+int primal(int num, int del) {                //The recursive function that allow to define prime numbers
     if (del >= (int)(sqrt(num) + 1))
         return 0;
     if (num % del == 0)
