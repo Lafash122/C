@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
 
-int maxel(int *arr, int len, int ind, int res) {        //The function that allow to search a maximum element
+int maxel(int *arr, int len, int ind, int res) {        //The recursive function that allow to search a maximum element
     if (ind == len)
         return res;
     if (*(arr + ind) > res)
