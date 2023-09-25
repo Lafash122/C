@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <malloc.h>
 
-//The function that allow to spiral fill the array
-void spiralfill(int *arr, int len) {
-    int num = 1, i, side1 = 0, side4 = 0, side2 = len - 1, side3 = len - 1;
+void spiralfill(int *arr, int len) {                                            //The function that allow to spiral fill the array
+    int num = 1, i;
+    int side1 = 0, side4 = 0;
+    int side2 = len - 1, side3 = len - 1;
     while (side4 <= side2) {
         for (i = side4; i <= side2; i++)
             arr[len * side1 + i] = num++;
