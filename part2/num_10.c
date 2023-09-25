@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
 
-int symmetry(int *arr, int start, int end) {                                        //The function that allow to define symmetry chains in array
+int symmetry(int *arr, int start, int end) {                                        //The recursive function that allow to define symmetry chains in array
     if ((arr[start] == arr[end]) && (end - start > 1))
         return symmetry(arr, start + 1, end - 1);
     else if ((arr[start] == arr[end]) && (end - start == 1 || end - start == 0))
