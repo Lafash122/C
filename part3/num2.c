@@ -12,7 +12,7 @@ int max(int x, int y) {
 int main() {
     int len, i, cnt = 1, res = 0;
     char txt[80] = "";
-    gets(txt);
+    fgets(txt, 80, stdin);
     len = strlen(txt);
     for (i = 0; i < len; i++) {
         if (txt[i] == txt[i + 1])
