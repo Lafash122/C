@@ -19,24 +19,24 @@ int main() {
     int *arr;
     int i, len, len1, len2, len3;
     fgets(sent1, 80, stdin);
-    len = (strlen(sent1)) - 1;
-    len1 = delrep(sent1, &len);
     fgets(sent2, 80, stdin);
-    len = (strlen(sent2)) - 1;
-    len2 = delrep(sent2, &len);
     fgets(sent3, 80, stdin);
-    len = (strlen(sent3)) - 1;
-    len3 = delrep(sent3, &len);
     arr = (int *) malloc(128 * sizeof(int));
     for (i = 0; i < 128; i++)
         arr[i] = 0;
 
+    len = (strlen(sent1)) - 1;
+    len1 = delrep(sent1, &len);
     for (i = 0; i < len1; i++)
         arr[(int) sent1[i]]++;
 
+    len = (strlen(sent2)) - 1;
+    len2 = delrep(sent2, &len);
     for (i = 0; i < len2; i++)
         arr[(int) sent2[i]]++;
 
+    len = (strlen(sent3)) - 1;
+    len3 = delrep(sent3, &len);
     for (i = 0; i < len3; i++)
         arr[(int) sent3[i]]++;
 
