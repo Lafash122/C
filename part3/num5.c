@@ -44,5 +44,7 @@ int main() {
         if (arr[i] == 1)
             printf("%c ", i);
 
+    free(arr);
+
     return 0;
 }
