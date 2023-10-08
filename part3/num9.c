@@ -7,11 +7,10 @@ int main() {
     fgets(sent, 80, stdin);
     char seps[] = " ,:!()?.;'-\n";
     char *token, **tokens;
-    int res = 0, i = 0, j, k;
+    int i = 0, j, k;
     tokens = (char **) malloc(40 * sizeof(char *));
     token = strtok(sent, seps);
     while (token != NULL) {
-        res = max(res, strlen(token));
         tokens[i] = token;
         token = strtok(NULL, seps);
         i++;
