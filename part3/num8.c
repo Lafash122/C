@@ -17,7 +17,7 @@ int main() {
     char *token, **tokens;
     int res = 0, len = 0, i = 0, j, *lens;
     tokens = (char **) malloc(40 * sizeof(char *));
-    lens = (int *) malloc(40 * sizeof (int));
+    lens = (int *) malloc(40 * sizeof(int));
     token = strtok(sent, seps);
     while (token != NULL) {
         res = max(res, strlen(token));
