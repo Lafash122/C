@@ -21,5 +21,7 @@ int main() {
         if (tokens[i] != NULL)
             printf("%s ", tokens[i]);
 
+    free(tokens);
+
     return 0;
 }
