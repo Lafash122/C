@@ -2,14 +2,6 @@
 #include <string.h>
 #include <malloc.h>
 
-//The function that allow to search a maximum element
-int max(int x, int y) {
-    if (x > y)
-        return x;
-    else
-        return y;
-}
-
 int main() {
     char sent[80] = "";
     fgets(sent, 80, stdin);
