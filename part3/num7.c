@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-//The function that allow to search a maximum element
+//The function that allow to search a minimum element
 int min(int x, int y) {
     if (x < y)
         return x;
