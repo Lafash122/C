@@ -16,11 +16,10 @@ int main() {
         i++;
     }
 
-    for (k = 0; k < i; k++) {
+    for (k = 0; k < i; k++)
         for (j = 0; j < k; j++)
             if (strcmp(tokens[k], tokens[j]) == 0)
                 printf("%s", tokens[k]);
-    }
 
     free(tokens);
 
