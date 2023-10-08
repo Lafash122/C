@@ -2,26 +2,29 @@
 #include <string.h>
 
 //The function that allow to search a maximum element
-int max(int x, int y) {
-    if (x > y)
+int min(int x, int y) {
+    if (x < y)
         return x;
     else
         return y;
 }
 
 int main() {
+    int i = 0, res = 1000;
     char sent[80] = "";
     fgets(sent, 80, stdin);
     char seps[] = " ,:!()?.;'-\n";
     char *token;
-    int i = 0, res = 0;
     token = strtok(sent, seps);
     while (token != NULL) {
-        res = max(res, strlen(token));
+        res = min(res, strlen(token));
         i++;
         token = strtok(NULL, seps);
     }
-    printf("%d", res);
+    if (i != 0)
+        printf("%d", res);
+    else
+        printf("%d", i);
 
     return 0;
 }
