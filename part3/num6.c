@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include <maloc.h>
+#include <malloc.h>
 
 int main() {
     char sent[80] = "";
