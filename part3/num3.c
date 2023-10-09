@@ -24,7 +24,7 @@ int main() {
     int cnt = 0, i, len;
     char txt[80] = "";
     fgets(txt, 80, stdin);
-    len = strlen(txt) - 1;
+    len = strlen(txt);
     uptolow(txt, len);
     len = delrep(txt, &len);
     for (i = 0; i < len; i++)
