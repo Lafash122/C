@@ -21,8 +21,7 @@ char *uptolow(char *str, int len) {
 
 int main() {
     char players[2][6] = {
-            "Petya", "Vasya"
-    };
+            "Petya", "Vasya"};
     char seps[] = " \n";
     char seq[80] = "";
     fgets(seq, 80, stdin);
