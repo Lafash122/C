@@ -17,7 +17,6 @@ int min(int x, int y) {
         return y;
 }
 
-
 int main() {
     int len, i, num = 0, cnt = 1, res = 0;
     char txt[80] = "";
