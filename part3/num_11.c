@@ -44,7 +44,6 @@ int main() {
         if (tokens[j][len - 1] != tokens[j + 1][0]) {
             printf("Winner: %s", players[id]);
             free(tokens);
-
             return 0;
         }
     }
@@ -52,6 +51,5 @@ int main() {
     id = j % 2;
     printf("Winner: %s", players[id]);
     free(tokens);
-
     return 0;
 }
