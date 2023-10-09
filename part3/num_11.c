@@ -23,9 +23,9 @@ int main() {
     char players[2][6] = {
             "Petya", "Vasya"
     };
+    char seps[] = " \n";
     char seq[80] = "";
     fgets(seq, 80, stdin);
-    char seps[] = " \n";
     char *token, **tokens;
     int i = 0, j, len, num, id;
     num = cntr(seq, ' ');
