@@ -2,6 +2,7 @@
 
 int main() {
     char num[6] = "";
+    char answer[6] = "";
     fgets(num, 6, stdin);
     int i, j, k;
     for (i = 0; i < 25; i++)
@@ -9,7 +10,6 @@ int main() {
 
     for (i = 0; i < 10; i++) {
         int bulls = 0, cows = 0;
-        char answer[6] = "";
         fgets(answer, 6, stdin);
         for (j = 0; j < 4; j++) {
             if (answer[j] == num[j])
@@ -26,5 +26,7 @@ int main() {
         }
     }
     puts("\nYou lose");
+    printf("The correct number is ");
+    puts(num);
     return 0;
 }
