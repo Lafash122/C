@@ -31,7 +31,7 @@ int main() {
     printf("%s", hint);
     for (i = 0; i < 10; i++) {
         puts(hide);
-        printf("Letter or word (0 - Letter; 1 - Word)");
+        printf("Attempts left: %d. Letter or word (0 - Letter; 1 - Word)", 10 - i);
         scanf("%d\n", &request);
         if (request == 0) {
             scanf("%c", &letter);
@@ -42,21 +42,23 @@ int main() {
         else if (request == 1) {
             fgets(answer, 80, stdin);
             if (strcmp(answer, word) == 0) {
-                puts("You win!");
+                puts("\nYou win!");
                 return 0;
             }
             else {
-                puts("You lose");
+                puts("\nYou lose");
                 printf("The correct word is ");
                 puts(word);
                 return 0;
             }
         }
         if (cntr(hide, '*') == 0) {
-            puts("You win!");
+            puts("\nYou win!");
             return 0;
         }
     }
-    puts("You lose");
+    puts("\nYou lose");
+    printf("The correct word is ");
+    puts(word);
     return 0;
 }
