@@ -2,7 +2,7 @@
 #include <string.h>
 #include <malloc.h>
 
-//The function that allow to search words with repeat's letters
+//The function that allow to search words without repeat's letters
 int noreps(char *word) {
     int len = strlen(word);
     for (int i = 0; i <= len; i++)
