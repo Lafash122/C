@@ -19,7 +19,6 @@ int main() {
                 luck++;
                 return 0;
             }
-
         }
     }
 }
