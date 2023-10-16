@@ -115,6 +115,5 @@ int main() {
                 printf("%c", intfx + 87);
         }
     }
-
     return 0;
 }
