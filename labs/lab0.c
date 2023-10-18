@@ -77,7 +77,7 @@ int main() {
     double dec, fx;
 
     if (!isbase(b1, b2) || !isnbase(x, b1) || cntr(x, '.') > 1) {
-        printf("bad input");
+        puts("bad input");
         return 0;
     }
 
