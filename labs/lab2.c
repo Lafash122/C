@@ -71,7 +71,7 @@ int main() {
         for (j = i + 1; j < len; j++)
             p[j] = end[j - i - 1];
 
-        puts(p);
+        printf("%s", p);
     }
 
     return 0;
