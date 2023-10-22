@@ -41,7 +41,6 @@ int minstr(char *str, char simb) {
 int main() {
     char p[SIZE] = "";
     char end[SIZE] = "";
-    char bad;
     fgets(p, SIZE, stdin);
     int n, len, i, j, k;
     scanf("\n%d", &n);
@@ -64,7 +63,7 @@ int main() {
             i--;
         }
 
-        bad = p[i];
+        char bad = p[i];
         p[i] = p[len - minstr(end, bad) - 1];
         end[minstr(end, bad)] = bad;
 
