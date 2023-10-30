@@ -14,8 +14,7 @@ int newind(char *pattern, char symbol, int patternlen) {
 
 int main() {
     char ptrn[SIZE] = "";
-    if (fgets(ptrn, SIZE, stdin) == NULL)
-        return 0;
+    fgets(ptrn, SIZE, stdin);
 
     int tlen = 0;
     char *txt = (char *) malloc(tlen * sizeof(char));
