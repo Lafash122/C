@@ -2,7 +2,7 @@
 #include <string.h>
 #include <malloc.h>
 
-#define SIZE 17
+#define SIZE 18
 
 //The function that allow to define new comparison index
 int newind(char *pattern, char symbol, int patternlen) {
@@ -14,7 +14,8 @@ int newind(char *pattern, char symbol, int patternlen) {
 
 int main() {
     char ptrn[SIZE] = "";
-    fgets(ptrn, SIZE, stdin);
+    if (fgets(ptrn, SIZE, stdin) == NULL)
+        return 0;
 
     int tlen = 0;
     char *txt = (char *) malloc(tlen * sizeof(char));
