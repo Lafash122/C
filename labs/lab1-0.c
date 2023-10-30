@@ -6,10 +6,10 @@
 
 //The function that allow to define new comparison index
 int newind(char *pattern, char symbol, int patternlen) {
-    for (int i = patternlen - 2; i >= 0; i--)
+    for (int i = patternlen - 1; i >= 0; i--)
         if (pattern[i] == symbol)
-            return patternlen - i - 1;
-    return patternlen;
+            return patternlen - i;
+    return patternlen + 1;
 }
 
 int main() {
@@ -28,11 +28,11 @@ int main() {
     }
 
     int plen, check;
-    plen = strlen(ptrn) - 1;
-    check = plen - 1;
+    plen = strlen(ptrn) - 2;
+    check = plen;
 
     while (check < tlen) {
-        for (int i = check, j = plen - 1; j >= 0; i--, j--) {
+        for (int i = check, j = plen; j >= 0; i--, j--) {
             printf("%d ", i + 1);
             if (txt[i] != ptrn[j])
                 break;
