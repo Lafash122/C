@@ -1,37 +1,42 @@
 #include <stdio.h>
 #include <malloc.h>
 
-//The fucntion that allow to swap two elements
+//The function that allow to swap two elements
 void swap(int *x, int *y) {
     int tmp = *x;
     *x =  *y;
     *y = tmp;
 }
 
-//The quick sort function
+//The function that allow to search separator index
+int sep(int *array, int start, int end) {
+    int mid = array[(start + end) / 2];
+
+    while (start <= end) {
+        while (array[start] < mid)
+            start++;
+        while (array[end] > mid)
+            end--;
+        if (start >= end)
+            break;
+        swap(&array[start++], &array[end--]);
+    }
+    return end;
+}
+
+//The quicksort-function
 void qsrt(int *array, int start, int end) {
     if (start < end) {
-        int mid = array[(start + end) / 2];
-        int s = start, f = end;
-
-        while (s <= f) {
-            while (array[s] < mid)
-                s++;
-            while (array[f] > mid)
-                f--;
-            if (s > f)
-                break;
-            swap(&array[s++], &array[f--]);
-        }
-        
-        qsrt(array, start, f);
-        qsrt(array, s, end);
+        int sp = sep(array, start, end);
+        qsrt(array, start, sp);
+        qsrt(array, sp + 1, end);
     }
 }
 
 int main() {
     int n;
     scanf("%d", &n);
+
     int *arr = (int *) malloc(n * sizeof(int));
     for (int i = 0; i < n; i++)
         scanf("%d", &arr[i]);
