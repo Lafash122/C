@@ -23,9 +23,9 @@ void qsrt(int *array, int start, int end) {
                 break;
             swap(&array[s++], &array[f--]);
         }
-        int newend = f, newstart = s;
-        qsrt(array, start, newend);
-        qsrt(array, newstart, end);
+        
+        qsrt(array, start, f);
+        qsrt(array, s, end);
     }
 }
 
