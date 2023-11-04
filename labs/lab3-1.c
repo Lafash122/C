@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include <malloc.h>
 
+//The fucntion that allow to swap two elements
 void swap(int *x, int *y) {
     int tmp = *x;
     *x =  *y;
     *y = tmp;
 }
 
+//The quick sort function
 void qsrt(int *array, int start, int end) {
     if (start < end) {
         int mid = array[(start + end) / 2];
