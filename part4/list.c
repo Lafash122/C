@@ -99,6 +99,26 @@ void deleven(LIST *L) {
     }
 }
 
+//The function that allow to delete odd keys
+void delodd(LIST *L) {
+    if (!empty(L)) {
+        LIST *before = L;
+        LIST *el = before->next;
+
+        while (el) {
+            if ((el->key) % 2 == 1) {
+                before->next = el->next;
+                free(el);
+                el = before->next;
+            }
+            else {
+                before = el;
+                el = el->next;
+            }
+        }
+    }
+}
+
 int main() {
     LIST *L;
     L = create(0, 0);
@@ -122,6 +142,7 @@ int main() {
 
     deleven(L);
     print(L);
+    printf("\n");
 
     LIST *K;
     K = create(0, 0);
@@ -134,6 +155,10 @@ int main() {
         LIST *p = create(kkey, kvalue);
         push(K, p);
     }
+
+    puts("\n");
+    delodd(K);
+    print(K);
 
     return 0;
 }
