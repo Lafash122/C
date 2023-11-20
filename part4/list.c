@@ -42,18 +42,6 @@ int empty(LIST *L) {
     return 1;
 }
 
-////The function that allow to delete element and return it
-//float pop(LIST *L) {
-//    if (!empty(L)) {
-//        LIST *old = L->next;
-//        L->next = old->next;
-//        float r = old->value;
-//        free(old);
-//        return r;
-//    }
-//    return 0;
-//}
-
 //The function that searches for a value by key
 float search(LIST *L, int key) {
     if (!empty(L)) {
@@ -72,6 +60,7 @@ float search(LIST *L, int key) {
 int listlen(LIST *L) {
     int len = 0;
     LIST *p = L->next;
+    
     while (p) {
         len++;
         p = p->next;
@@ -133,7 +122,7 @@ int main() {
     }
 
     int k;
-//    printf("Which lkey lvalue do you want to know:");
+    printf("Which key value do you want to know:");
     scanf("%d", &k);
     printf("The lkey lvalue is %f\n", search(L, k));
 
