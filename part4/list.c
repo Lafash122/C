@@ -74,7 +74,7 @@ void deleven(LIST *L) {
         LIST *before = L;
         LIST *el = before->next;
 
-        while (el) {
+        while (el)
             if ((el->key) % 2 == 0) {
                 before->next = el->next;
                 free(el);
@@ -84,7 +84,6 @@ void deleven(LIST *L) {
                 before = el;
                 el = el->next;
             }
-        }
     }
 }
 
@@ -94,7 +93,7 @@ void delodd(LIST *L) {
         LIST *before = L;
         LIST *el = before->next;
 
-        while (el) {
+        while (el)
             if ((el->key) % 2 == 1) {
                 before->next = el->next;
                 free(el);
@@ -104,7 +103,6 @@ void delodd(LIST *L) {
                 before = el;
                 el = el->next;
             }
-        }
     }
 }
 
