@@ -60,7 +60,7 @@ float search(LIST *L, int key) {
 int listlen(LIST *L) {
     int len = 0;
     LIST *p = L->next;
-    
+
     while (p) {
         len++;
         p = p->next;
@@ -108,6 +108,14 @@ void delodd(LIST *L) {
     }
 }
 
+//The function that allow to unite two lists
+void unite(LIST *L, LIST *K) {
+    while (L->next) {
+        L = L->next;
+    }
+    L->next=K->next;
+}
+
 int main() {
     LIST *L;
     L = create(0, 0);
@@ -124,7 +132,7 @@ int main() {
     int k;
     printf("Which key value do you want to know:");
     scanf("%d", &k);
-    printf("The lkey lvalue is %f\n", search(L, k));
+    printf("The key value is %f\n", search(L, k));
 
     printf("\nThe length of the list is %d\n", listlen(L));
     printf("\n");
@@ -145,9 +153,14 @@ int main() {
         push(K, p);
     }
 
-    puts("\n");
+    printf("\n");
     delodd(K);
     print(K);
+    printf("\n");
+
+    unite(L, K);
+    printf("\n");
+    print(L);
 
     return 0;
 }
