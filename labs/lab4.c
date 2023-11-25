@@ -5,7 +5,7 @@
 
 //The description of the attributes of the double-linked list
 ollist {
-    char value;
+    int value;
     struct list *next;
 };
 
@@ -29,6 +29,34 @@ void push(ollist *l, ollist *el) {
     ollist *last = l->next;
     el->next = last;
     l->next = el;
+}
+
+//The function that allows to pop the first element
+int popfirst(ollist *l) {
+    if (!empty(l)) {
+        ollist *first = l->next;
+        l->next = first->next;
+        int r = first->value;
+        free(first);
+        return r;
+    }
+    return -1;
+}
+
+//The function that allows to pop the last element
+int popend(ollist *l) {
+    if (!empty(l)) {
+        ollist *last = l->next;
+        while (last->next) {
+            l = l->next;
+            last = last->next;
+        }
+        int r = last->value;
+        free(last);
+        l->next = NULL;
+        return r;
+    }
+    return -1;
 }
 
 //The function that allows to print the list
@@ -81,6 +109,11 @@ int errors(char *str, int len) {
     return 0;
 }
 
+//The function that allows to make postfix notation
+void intopost(){
+    return;
+}
+
 int main() {
     int exlen = 0;
     char *example = (char *) malloc(exlen * sizeof(char));
@@ -101,6 +134,12 @@ int main() {
         puts("syntax error");
         return 0;
     }
-    
+
+    ollist *post = create(0);
+    for (int i = 0; i < exlen; i++) {
+        ollist *el = create(example[i]);
+        push(post, el);
+    }
+
     return 0;
 }
