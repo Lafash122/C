@@ -101,15 +101,6 @@ int main() {
         puts("syntax error");
         return 0;
     }
-
-    ollist *post;
-    post = create('0');
-    for (int i = 0; i < exlen; i++) {
-        ollist *add = create(example[i]);
-        push(post, add);
-    }
-
-    print(post);
-
+    
     return 0;
 }
