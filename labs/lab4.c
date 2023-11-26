@@ -3,14 +3,14 @@
 
 #define ollist struct list
 
-//The description of the attributes of the double-linked list
+//The description of the attributes of the one-linked list
 ollist {
     int value;
     struct list *next;
 };
 
 //The creating of the list
-ollist *create(char value) {
+ollist *create(int value) {
     ollist *el = (ollist *) malloc(sizeof(ollist));
     el->value = value;
     el->next = NULL;
@@ -59,11 +59,21 @@ int popend(ollist *l) {
     return -1;
 }
 
+//The function that allows to find the list length
+int listlen(ollist *l) {
+    int len = 0;
+    while (l->next) {
+        l = l->next;
+        len++;
+    }
+    return len;
+}
+
 //The function that allows to print the list
 void print(ollist *l) {
     ollist *ptr = l->next;
     while (ptr) {
-        printf("%c\n", ptr->value);
+        printf("%d\n", ptr->value);
         ptr = ptr->next;
     }
 }
@@ -91,7 +101,7 @@ int isop(char sym) {
     return 0;
 }
 
-//The function that allow to check the example for some input errors
+//The function that allows to check the example for some input errors
 int errors(char *str, int len) {
     if (isop(str[0]) || isop(str[len - 1]))
         return 1;
@@ -109,9 +119,65 @@ int errors(char *str, int len) {
     return 0;
 }
 
+//The function allows to find the non-negative integer degree of the number
+int deg(int x, int y) {
+    if (y == 0)
+        return 1;
+
+    int num = x;
+    for (int i = 0; i < y-1; i++)
+        num = num * x;
+    return num;
+}
+
+//The function that allows to convert arithmetic symbols to digit
+int convert(char sym) {
+    if (sym == '+')
+        return -1;
+    else if (sym == '-')
+        return -2;
+    else if (sym == '*')
+        return -3;
+    else if (sym == '/')
+        return -4;
+    else if (sym == '(')
+        return -5;
+    else if (sym == ')')
+        return -6;
+    else
+        return 0;
+}
+
 //The function that allows to make postfix notation
-void intopost(){
-    return;
+void intopost(char *str, int len) {
+    ollist *ops = create(0);
+    ollist *post = create(0);
+    int nlen = 0, num = 0, start;
+    for (int i = 0; i < len; i++) {
+        if ('0' <= str[i] && str[i] <= '9')
+            nlen++;
+        else {
+            start = i - nlen;
+            for (int j = start; j < i; j++) {
+                num += (str[j] - '0') * deg(10, start + nlen - j - 1);
+            }
+            ollist *nums = create(num);
+            print(nums);
+            push(post, nums);
+            num = 0;
+            nlen = 0;
+
+            int form = convert(str[i]);
+            if (form != 0) {
+                ollist *op = create(form);
+                push(ops, op);
+            }
+        }
+    }
+    print(post);
+    printf("\n");
+    print(ops);
+
 }
 
 int main() {
@@ -135,11 +201,7 @@ int main() {
         return 0;
     }
 
-    ollist *post = create(0);
-    for (int i = 0; i < exlen; i++) {
-        ollist *el = create(example[i]);
-        push(post, el);
-    }
+    intopost(example, exlen + 1);
 
     return 0;
 }
