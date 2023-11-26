@@ -33,30 +33,24 @@ void push(ollist *l, ollist *el) {
 
 //The function that allows to pop the first element
 int popfirst(ollist *l) {
-    if (!empty(l)) {
-        ollist *first = l->next;
-        l->next = first->next;
-        int r = first->value;
-        free(first);
-        return r;
-    }
-    return -1;
+    ollist *first = l->next;
+    l->next = first->next;
+    int r = first->value;
+    free(first);
+    return r;
 }
 
 //The function that allows to pop the last element
 int popend(ollist *l) {
-    if (!empty(l)) {
-        ollist *last = l->next;
-        while (last->next) {
-            l = l->next;
-            last = last->next;
-        }
-        int r = last->value;
-        free(last);
-        l->next = NULL;
-        return r;
+    ollist *last = l->next;
+    while (last->next) {
+        l = l->next;
+        last = last->next;
     }
-    return -1;
+    int r = last->value;
+    free(last);
+    l->next = NULL;
+    return r;
 }
 
 //The function that allows to find the list length
@@ -67,6 +61,17 @@ int listlen(ollist *l) {
         len++;
     }
     return len;
+}
+
+//The function that allow to get the last element value
+int valend(ollist *l) {
+    if (!empty(l)) {
+        while (l->next)
+            l = l->next;
+        int r = l->value;
+        return r;
+    }
+    return -1;
 }
 
 //The function that allows to print the list
@@ -129,7 +134,7 @@ int deg(int x, int y) {
         return 1;
 
     int num = x;
-    for (int i = 0; i < y-1; i++)
+    for (int i = 0; i < y - 1; i++)
         num = num * x;
     return num;
 }
@@ -137,31 +142,42 @@ int deg(int x, int y) {
 //The function that allows to convert arithmetic symbols to digit
 int convert(char sym) {
     if (sym == '+')
-        return -1;
+        return -11;
     else if (sym == '-')
-        return -2;
+        return -21;
     else if (sym == '*')
-        return -3;
+        return -12;
     else if (sym == '/')
-        return -4;
+        return -22;
     else if (sym == '(')
-        return -5;
+        return -13;
     else if (sym == ')')
-        return -6;
+        return -23;
     else
         return 0;
 }
 
+//The function that allows to define priority of operations
+int prior(ollist *l, int op) {
+    int top = -valend(l) % 10;
+    if ((-op % 10) > top)
+        return 0;
+    else if ((-op % 10) == top)
+        return 1;
+    return 2;
+}
+
 //The function that allows to make postfix notation
-void intopost(char *str, int len) {
+ollist *intopost(char *str, int len) {
     ollist *ops = create(0);
     ollist *post = create(0);
     int nlen = 0, num = 0, start;
+
     for (int i = 0; i < len; i++)
         if ('0' <= str[i] && str[i] <= '9')
             nlen++;
         else {
-            if (str[i] != '(') {
+            if (str[i] != '(' && str[i - 1] != ')') {
                 start = i - nlen;
                 for (int j = start; j < i; j++)
                     num += (str[j] - '0') * deg(10, start + nlen - j - 1);
@@ -172,16 +188,42 @@ void intopost(char *str, int len) {
                 nlen = 0;
             }
 
-            int form = convert(str[i]);
-            if (form != 0) {
-                ollist *op = create(form);
-                push(ops, op);
+            if (i != len - 1) {
+                int form = convert(str[i]);
+                if (empty(ops) || valend(ops) == '(' || !prior(ops, form)) {
+                    ollist *op = create(form);
+                    push(ops, op);
+                } else if (prior(ops, form)) {
+                    while (prior(ops, form) == 2 || valend(ops) == -13) {
+                        int topost = popend(ops);
+                        ollist *op = create(topost);
+                        push(post, op);
+                    }
+                    ollist *op = create(form);
+                    push(ops, op);
+                } else if (form == -13) {
+                    ollist *op = create(form);
+                    push(ops, op);
+                } else if (form == -23) {
+                    while (valend(ops) == -13) {
+                        int topost = popend(ops);
+                        ollist *op = create(topost);
+                        push(post, op);
+                    }
+                    popend(ops);
+                }
             }
         }
-    print(post);
-    printf("\n");
-    print(ops);
-
+//    print(ops);
+    while (!empty(ops)) {
+        int a = popend(ops);
+        ollist *op = create(a);
+        push(post, op);
+    }
+//    printf("\n");
+//    print(post);
+//    printf("\n");
+    return post;
 }
 
 int main() {
@@ -205,7 +247,44 @@ int main() {
         return 0;
     }
 
-    intopost(example, exlen + 1);
+    ollist *post = intopost(example, exlen + 1);
+    ollist *res = create(0);
+    while (!empty(post)) {
+        int el = popfirst(post);
+        if (el >= 0) {
+            ollist *add = create(el);
+            push(res, add);
+        }
+        else {
+            int num1 = popend(res);
+            int num2 = popend(res);
+            if (el == -11) {
+                int num = num1 + num2;
+                ollist *add = create(num);
+                push(res, add);
+            }
+            else if (el == -21) {
+                int num = num2 - num1;
+                ollist *add = create(num);
+                push(res, add);
+            }
+            else if (el == -12) {
+                int num = num1 * num2;
+                ollist *add = create(num);
+                push(res, add);
+            }
+            else {
+                if (num1 == 0) {
+                    puts("division by zero");
+                    return 0;
+                }
+                int num = num2 / num1;
+                ollist *add = create(num);
+                push(res, add);
+            }
+        }
+    }
+    print(res);
 
     return 0;
 }
