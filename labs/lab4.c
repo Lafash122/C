@@ -115,6 +115,10 @@ int errors(char *str, int len) {
             return 1;
         else if (isop(str[i]) && (str[i + 1] == ')'))
             return 1;
+        else if ('0' <= str[i] && str[i] <= '9' && str[i + 1] == '(')
+            return 1;
+        else if (str[i] == ')' && '0' <= str[i + 1] && str[i + 1] <= '9')
+            return 1;
     }
     return 0;
 }
@@ -153,19 +157,20 @@ void intopost(char *str, int len) {
     ollist *ops = create(0);
     ollist *post = create(0);
     int nlen = 0, num = 0, start;
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < len; i++)
         if ('0' <= str[i] && str[i] <= '9')
             nlen++;
         else {
-            start = i - nlen;
-            for (int j = start; j < i; j++) {
-                num += (str[j] - '0') * deg(10, start + nlen - j - 1);
+            if (str[i] != '(') {
+                start = i - nlen;
+                for (int j = start; j < i; j++)
+                    num += (str[j] - '0') * deg(10, start + nlen - j - 1);
+
+                ollist *nums = create(num);
+                push(post, nums);
+                num = 0;
+                nlen = 0;
             }
-            ollist *nums = create(num);
-            print(nums);
-            push(post, nums);
-            num = 0;
-            nlen = 0;
 
             int form = convert(str[i]);
             if (form != 0) {
@@ -173,7 +178,6 @@ void intopost(char *str, int len) {
                 push(ops, op);
             }
         }
-    }
     print(post);
     printf("\n");
     print(ops);
