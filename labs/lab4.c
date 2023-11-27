@@ -166,6 +166,7 @@ ollist *intopost(char *str, int len) {
     for (int i = 0; i < len; i++)
         if ('0' <= str[i] && str[i] <= '9')
             nlen++;
+
         else {
             if (str[i] != '(' && str[i - 1] != ')') {
                 start = i - nlen;
@@ -187,10 +188,12 @@ ollist *intopost(char *str, int len) {
                 ollist *op = create(form);
                 push(ops, op);
             }
+
             else if (str[i] == '(') {
                 ollist *op = create(form);
                 push(ops, op);
             }
+
             else if (str[i] == ')') {
                 while (valend(ops) != '(') {
                     ollist *op = create(popend(ops));
@@ -198,13 +201,14 @@ ollist *intopost(char *str, int len) {
                 }
                 popend(ops);
             }
-
         }
+
     while (!empty(ops)) {
         int a = popend(ops);
         ollist *op = create(a);
         push(post, op);
     }
+
     return post;
 }
 
@@ -237,35 +241,42 @@ int main() {
             ollist *add = create(el);
             push(res, add);
         }
+
         else {
             int num1 = popend(res);
             int num2 = popend(res);
+
             if (el == -11) {
                 int num = num1 + num2;
                 ollist *add = create(num);
                 push(res, add);
             }
+
             else if (el == -21) {
                 int num = num2 - num1;
                 ollist *add = create(num);
                 push(res, add);
             }
+
             else if (el == -12) {
                 int num = num1 * num2;
                 ollist *add = create(num);
                 push(res, add);
             }
+
             else {
                 if (num1 == 0) {
                     puts("division by zero");
                     return 0;
                 }
+
                 int num = num2 / num1;
                 ollist *add = create(num);
                 push(res, add);
             }
         }
     }
+    
     print(res);
 
     return 0;
