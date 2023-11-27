@@ -53,16 +53,6 @@ int popend(ollist *l) {
     return r;
 }
 
-//The function that allows to find the list length
-int listlen(ollist *l) {
-    int len = 0;
-    while (l->next) {
-        l = l->next;
-        len++;
-    }
-    return len;
-}
-
 //The function that allow to get the last element value
 int valend(ollist *l) {
     if (!empty(l)) {
@@ -150,21 +140,21 @@ int convert(char sym) {
     else if (sym == '/')
         return -22;
     else if (sym == '(')
-        return -13;
-    else if (sym == ')')
-        return -23;
+        return '(';
     else
-        return 0;
+        return ')';
 }
 
 //The function that allows to define priority of operations
 int prior(ollist *l, int op) {
-    int top = -valend(l) % 10;
-    if ((-op % 10) > top)
+    int top = valend(l);
+    if (top > 0 || op > 0)
         return 0;
-    else if ((-op % 10) == top)
+    else if (top % 10 > op % 10)
         return 1;
-    return 2;
+    else if (top % 10 == op % 10)
+        return 2;
+    return 3;
 }
 
 //The function that allows to make postfix notation
@@ -188,41 +178,33 @@ ollist *intopost(char *str, int len) {
                 nlen = 0;
             }
 
-            if (i != len - 1) {
-                int form = convert(str[i]);
-                if (empty(ops) || valend(ops) == '(' || !prior(ops, form)) {
-                    ollist *op = create(form);
-                    push(ops, op);
-                } else if (prior(ops, form)) {
-                    while (prior(ops, form) == 2 || valend(ops) == -13) {
-                        int topost = popend(ops);
-                        ollist *op = create(topost);
-                        push(post, op);
-                    }
-                    ollist *op = create(form);
-                    push(ops, op);
-                } else if (form == -13) {
-                    ollist *op = create(form);
-                    push(ops, op);
-                } else if (form == -23) {
-                    while (valend(ops) == -13) {
-                        int topost = popend(ops);
-                        ollist *op = create(topost);
-                        push(post, op);
-                    }
-                    popend(ops);
+            int form = convert(str[i]);
+            if (isop(str[i])) {
+                while (!empty(ops) && (prior(ops, form) >= 2 || valend(ops) != '(')) {
+                    ollist *op = create(popend(ops));
+                    push(post, op);
                 }
+                ollist *op = create(form);
+                push(ops, op);
             }
+            else if (str[i] == '(') {
+                ollist *op = create(form);
+                push(ops, op);
+            }
+            else if (str[i] == ')') {
+                while (valend(ops) != '(') {
+                    ollist *op = create(popend(ops));
+                    push(post, op);
+                }
+                popend(ops);
+            }
+
         }
-//    print(ops);
     while (!empty(ops)) {
         int a = popend(ops);
         ollist *op = create(a);
         push(post, op);
     }
-//    printf("\n");
-//    print(post);
-//    printf("\n");
     return post;
 }
 
