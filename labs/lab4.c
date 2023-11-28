@@ -283,6 +283,7 @@ int main() {
     }
 
     print(res);
+    free(example);
 
     return 0;
 }
