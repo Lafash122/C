@@ -18,55 +18,56 @@ ollist *create(int value) {
 }
 
 //The function that allows to check if the list is empty
-int empty(ollist *l) {
-    return !(l->next);
+int empty(ollist *list) {
+    return !(list->next);
 }
 
 //The function that allows to add the element to the end of the list
-void push(ollist *l, ollist *el) {
-    while (l->next)
-        l = l->next;
-    ollist *last = l->next;
+void push(ollist *list, ollist *el) {
+    while (list->next)
+        list = list->next;
+    ollist *last = list->next;
     el->next = last;
-    l->next = el;
+    list->next = el;
 }
 
 //The function that allows to pop the first element
-int popfirst(ollist *l) {
-    ollist *first = l->next;
-    l->next = first->next;
+int popfirst(ollist *list) {
+    ollist *first = list->next;
+    list->next = first->next;
     int r = first->value;
     free(first);
     return r;
 }
 
 //The function that allows to pop the last element
-int popend(ollist *l) {
-    ollist *last = l->next;
+int popend(ollist *list) {
+    ollist *last = list->next;
     while (last->next) {
-        l = l->next;
+        list = list->next;
         last = last->next;
     }
+
     int r = last->value;
     free(last);
-    l->next = NULL;
+    list->next = NULL;
     return r;
 }
 
 //The function that allow to get the last element value
-int valend(ollist *l) {
-    if (!empty(l)) {
-        while (l->next)
-            l = l->next;
-        int r = l->value;
+int valend(ollist *list) {
+    if (!empty(list)) {
+        while (list->next)
+            list = list->next;
+        int r = list->value;
         return r;
     }
     return -1;
 }
 
 //The function that allows to print the list
-void print(ollist *l) {
-    ollist *ptr = l->next;
+void print(ollist *list) {
+    ollist *ptr = list->next;
     while (ptr) {
         printf("%d\n", ptr->value);
         ptr = ptr->next;
@@ -84,6 +85,7 @@ int parent(char *str, int len) {
         else if (str[i] == ')')
             par--;
     }
+
     if (par)
         return 0;
     return 1;
@@ -115,17 +117,18 @@ int errors(char *str, int len) {
         else if (str[i] == ')' && '0' <= str[i + 1] && str[i + 1] <= '9')
             return 1;
     }
+
     return 0;
 }
 
 //The function allows to find the non-negative integer degree of the number
-int deg(int x, int y) {
-    if (y == 0)
+int deg(int base, int n) {
+    if (n == 0)
         return 1;
 
-    int num = x;
-    for (int i = 0; i < y - 1; i++)
-        num = num * x;
+    int num = base;
+    for (int i = 0; i < n - 1; i++)
+        num = num * base;
     return num;
 }
 
@@ -208,6 +211,8 @@ ollist *intopost(char *str, int len) {
         ollist *op = create(a);
         push(post, op);
     }
+    print(ops);
+
 
     return post;
 }
