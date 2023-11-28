@@ -181,7 +181,7 @@ ollist *intopost(char *str, int len) {
 
             int form = convert(str[i]);
             if (isop(str[i])) {
-                while (!empty(ops) && prior(ops, form) >= 2 && valend(ops) != '(') {
+                while (!empty(ops) && prior(ops,form)>=2 && valend(ops)!='(') {
                     ollist *op = create(popend(ops));
                     push(post, op);
                 }
