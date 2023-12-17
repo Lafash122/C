@@ -250,35 +250,26 @@ int main() {
         else {
             int num1 = popend(res);
             int num2 = popend(res);
+            int num;
 
-            if (el == -11) {
-                int num = num1 + num2;
-                ollist *add = create(num);
-                push(res, add);
-            }
+            if (el == -11)
+                num = num1 + num2;
 
-            else if (el == -21) {
-                int num = num2 - num1;
-                ollist *add = create(num);
-                push(res, add);
-            }
+            else if (el == -21)
+                num = num2 - num1;
 
-            else if (el == -12) {
-                int num = num1 * num2;
-                ollist *add = create(num);
-                push(res, add);
-            }
+            else if (el == -12)
+                num = num1 * num2;
 
             else {
                 if (num1 == 0) {
                     puts("division by zero");
                     return 0;
                 }
-
-                int num = num2 / num1;
-                ollist *add = create(num);
-                push(res, add);
+                num = num2 / num1;
             }
+            ollist *add = create(num);
+            push(res, add);
         }
     }
 
