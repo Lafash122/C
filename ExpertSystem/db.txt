@@ -1,0 +1,47 @@
+0 Is it a zombie?
+1 Is it a boss-type zombie?
+2 Is it an animal?
+3 Can he have different movement speeds?
+4 Is it from Blackport Police Departament?
+5 Is it wolf?
+6 It is Raider.
+7 It is Ravager.
+8 Is it located on the third level of Bunker Alfa?
+9 Does it have a body armor?
+10 Is it from Crooked Creek Farm?
+11 Does it have 30 damage?
+12 It is Infected Bull.
+17 It is The Blind One.
+18 It is Witch.
+19 Does it have a tactical shield?
+20 Is it wearing a police uniform?
+21 Does it move fast?
+22 Can you meet it in the Limestone Ridge, Cliffs or Spires?
+23 It is Diseased Wolf.
+24 Does it have 40 health?
+39 It is Riot Zombie.
+40 It is Explosive Zombie.
+41 Does it heal when it takes damage?
+42 It is Brawler.
+43 It is Rotten Yokel.
+44 It is Savage Giant.
+45 Does it have a special attack?
+46 Can you meet it in Bunker Alfa?
+49 It is Grey Wolf.
+50 It is Rabid Wolf.
+83 It is Hungry Chomper.
+84 It is Zombie Officer.
+91 Is the special attack Sitting Tremor?
+92 Is it the weakest zombie in the game?
+93 Does it heal upon inflicting damage?
+94 It is Merman.
+183 Does it have 300 health?
+184 It is Toxic Spitter.
+185 It is Roaming Zombie.
+186 It is Fast Biter.
+187 It is Frozen Bloater.
+188 Does it have 100 damage?
+367 It is Toxic Abomination.
+368 It is Floaterbloater.
+377 It is Savage Giant.
+378 It is Numb Zombie.
