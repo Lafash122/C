@@ -28,6 +28,7 @@ int main() {
     qstion[qlen - 1] = '\0';
     puts(qstion);
 
+    //The process to find the answer
     while (oldq[qlen - 2] != '.') {
         printf("Answer (yes or no):");
         gets(answer);
@@ -63,6 +64,7 @@ int main() {
     printf("\nWhat is the correct answer?\n");
     gets(newans);
 
+    //The process to unpdate the database
     fscanf(olddb, "%d", &curkey);
     while (curkey < 2 * key + 1) {
         fgets(qstion, MAX_QUESTION - 1, olddb);
