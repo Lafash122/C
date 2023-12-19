@@ -19,7 +19,7 @@ int newkey(char* answer, int oldkey) {
 }
 
 int main() {
-    FILE *db = fopen("testdb.txt", "r");
+    FILE *db = fopen("db.txt", "r");
 
     int key, curkey;
     char qstion[MAX_QUESTION], answer[MAX_ANSWER], oldq[MAX_QUESTION];
@@ -58,8 +58,8 @@ int main() {
     }
     fclose(db);
 
-    FILE *olddb = fopen("testdb.txt", "r");
-    FILE *newdb = fopen("newtestdb.txt", "a");
+    FILE *olddb = fopen("db.txt", "r");
+    FILE *newdb = fopen("newdb.txt", "a");
 
     char newans[MAX_QUESTION];
     printf("\nWhat is the correct answer?\n");
@@ -122,10 +122,12 @@ int main() {
 
     fclose(newdb);
     fclose(olddb);
-    rename("newtestdb.txt", "tmp.txt");
-    rename("testdb.txt", "newtestdb.txt");
-    rename("tmp.txt", "testdb.txt");
-    remove("newtestdb.txt");
+    
+    rename("newdb.txt", "tmp.txt");
+    rename("db.txt", "newdb.txt");
+    rename("tmp.txt", "db.txt");
+    
+    remove("newdb.txt");
 
     return 0;
 }
