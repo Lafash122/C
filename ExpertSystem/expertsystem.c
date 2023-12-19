@@ -1,15 +1,13 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "btree.h"
-
 #define YES "yes"
 #define NO "no"
 #define MAX_QUESTION 128
 #define MAX_ANSWER 4
 
 //The function that gives the key of the next question
-int newkey(char* answer, int oldkey) {
+int getkey(char* answer, int oldkey) {
     if (!strcmp(answer, YES))
         return 2 * oldkey + 1;
     else if (!strcmp(answer, NO))
@@ -34,7 +32,7 @@ int main() {
         printf("Answer (yes or no):");
         gets(answer);
         printf("\n");
-        key = newkey(answer, key);
+        key = getkey(answer, key);
 
         while (curkey != key) {
             fscanf(db, "%d", &curkey);
@@ -66,27 +64,23 @@ int main() {
     gets(newans);
 
     fscanf(olddb, "%d", &curkey);
-    while (curkey < key) {
-        fgets(qstion, MAX_QUESTION - 1, olddb);
-        fprintf(newdb, "%d", curkey);
-        fputs(qstion, newdb);
-        fscanf(olddb, "%d", &curkey);
-    }
-    char newq[MAX_QUESTION];
-    printf("\nWhat the question distinguish them?\n");
-    gets(newq);
-    fprintf(newdb, "%d ", key);
-    fputs(newq, newdb);
-    fputs("\n", newdb);
-
-    fgets(qstion, MAX_QUESTION - 1, olddb);
-    fscanf(olddb, "%d", &curkey);
-
     while (curkey < 2 * key + 1) {
         fgets(qstion, MAX_QUESTION - 1, olddb);
         fprintf(newdb, "%d", curkey);
         fputs(qstion, newdb);
         fscanf(olddb, "%d", &curkey);
+
+        if (curkey == key) {
+            char newq[MAX_QUESTION];
+            printf("\nWhat the question distinguish them?\n");
+            gets(newq);
+            fprintf(newdb, "%d ", key);
+            fputs(newq, newdb);
+            fputs("\n", newdb);
+            
+            fgets(qstion, MAX_QUESTION - 1, olddb);
+            fscanf(olddb, "%d", &curkey);
+        }
     }
 
     printf("\nWhat is the answer on this question? (yes or no)\n");
@@ -97,7 +91,8 @@ int main() {
         fprintf(newdb, "%d ", newkey);
         fputs(newans, newdb);
         fputs("\n", newdb);
-        newkey = 2 * key + 2;
+
+        newkey++;
         fprintf(newdb, "%d", newkey);
         fputs(oldq, newdb);
         fputs("\n", newdb);
@@ -107,7 +102,8 @@ int main() {
         fprintf(newdb, "%d", newkey);
         fputs(oldq, newdb);
         fputs("\n", newdb);
-        newkey = 2 * key + 2;
+
+        newkey++;
         fprintf(newdb, "%d ", newkey);
         fputs(newans, newdb);
         fputs("\n", newdb);
@@ -122,12 +118,9 @@ int main() {
 
     fclose(newdb);
     fclose(olddb);
-    
-    rename("newdb.txt", "tmp.txt");
-    rename("db.txt", "newdb.txt");
-    rename("tmp.txt", "db.txt");
-    
-    remove("newdb.txt");
+
+    remove("db.txt");
+    rename("newdb.txt", "db.txt");
 
     return 0;
 }
