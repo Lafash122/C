@@ -107,7 +107,7 @@ avl *add(avl *t, int val) {
     else
         if (val < t->value)
             t->left = add(t->left, val);
-        else
+        else if (val > t->value)
             t->right = add(t->right, val);
 
     return balance(t);
