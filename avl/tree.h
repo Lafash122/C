@@ -32,12 +32,16 @@ int height(avl *t) {
     return 0;
 }
 
+//The function of searching the maximum element
+int max(int n1, int n2) {
+    if (n1 > n2) 
+        return n1;
+    return n2;
+}
+
 //The function of correction the height
 void hcorrect(avl *t) {
-    if (height(t->left) > height(t->right))
-        t->height = height(t->left) + 1;
-    else
-        t->height = height(t->right) + 1;
+    t->height = max(height(t->left), height (t->right))+ 1;
 }
 
 //The function that count the difference of right and left trees
