@@ -1,5 +1,5 @@
-#ifndef LAB6_0_TEST_H
-#define LAB6_0_TEST_H
+#ifndef LAB6_0_TREE_H
+#define LAB6_0_TREE_H
 
 #include <malloc.h>
 #include <stdio.h>
@@ -33,10 +33,10 @@ int height(avl *t) {
 }
 
 //The function of searching the maximum element
-int max(int n1, int n2) {
-    if (n1 > n2) 
-        return n1;
-    return n2;
+int max(int a, int b) {
+    if (a > b)
+        return a;
+    return b;
 }
 
 //The function of correction the height
@@ -73,21 +73,10 @@ avl *slr(avl *t) {
     return root;
 }
 
-//The function of the big right rotation
-void brr(avl *t) {
-    slr(t->left);
-    srr(t);
-}
-
-//The function of the big left rotation
-void blr(avl *t) {
-    srr(t->right);
-    slr(t);
-}
-
 //The function of balancing the tree
 avl *balance(avl *t) {
     hcorrect(t);
+
     if (heightdif(t) == 2) {
         if (heightdif(t->right) < 0)
             t->right = srr(t->right);
@@ -111,7 +100,7 @@ avl *add(avl *t, int val) {
     else
         if (val < t->value)
             t->left = add(t->left, val);
-        else if (val > t->value)
+        else
             t->right = add(t->right, val);
 
     return balance(t);
@@ -139,4 +128,4 @@ void inorder(avl *t) {
         inorder(t->right);
 }
 
-#endif //LAB6_0_TEST_H
+#endif //LAB6_0_TREE_H
