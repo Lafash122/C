@@ -128,4 +128,22 @@ void inorder(avl *t) {
         inorder(t->right);
 }
 
+//The function of prefix form print
+void preorder(avl *t) {
+    printf("%d ", t->value);
+    if (t->left)
+        preorder(t->left);
+    if (t->right)
+        preorder(t->right);
+}
+
+//The function of postfix form print
+void postorder(avl *t) {
+    if (t->left)
+        postorder(t->left);
+    if (t->right)
+        postorder(t->right);
+    printf("%d ", t->value);
+}
+
 #endif //LAB6_0_TREE_H
