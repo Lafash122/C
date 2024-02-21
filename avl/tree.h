@@ -9,7 +9,6 @@
 //The description of avl-tree structure
 avl{
     int value;
-    int height;
     struct tree *right;
     struct tree *left;
 };
@@ -18,18 +17,10 @@ avl{
 avl *create(int value) {
     avl *root = (avl *) malloc(sizeof(avl));
     root->value = value;
-    root->height = 1;
     root->right = NULL;
     root->left = NULL;
 
     return root;
-}
-
-//The function of height of the tree
-int height(avl *t) {
-    if (t)
-        return t->height;
-    return 0;
 }
 
 //The function of searching the maximum element
@@ -39,9 +30,11 @@ int max(int a, int b) {
     return b;
 }
 
-//The function of correction the height
-void hcorrect(avl *t) {
-    t->height = max(height(t->left), height (t->right))+ 1;
+//The function of height of the tree
+int height(avl *t) {
+    if (!t)
+        return 0;
+    return max(height(t->right), height(t->left)) + 1;
 }
 
 //The function that count the difference of right and left trees
@@ -55,9 +48,6 @@ avl *srr(avl *t) {
     t->left = root->right;
     root->right = t;
 
-    hcorrect(t);
-    hcorrect(root);
-
     return root;
 }
 
@@ -67,15 +57,11 @@ avl *slr(avl *t) {
     t->right = root->left;
     root->left = t;
 
-    hcorrect(t);
-    hcorrect(root);
-
     return root;
 }
 
 //The function of balancing the tree
 avl *balance(avl *t) {
-    hcorrect(t);
 
     if (heightdif(t) == 2) {
         if (heightdif(t->right) < 0)
@@ -98,10 +84,10 @@ avl *add(avl *t, int val) {
         return create(val);
 
     else
-        if (val < t->value)
-            t->left = add(t->left, val);
-        else
-            t->right = add(t->right, val);
+    if (val < t->value)
+        t->left = add(t->left, val);
+    else
+        t->right = add(t->right, val);
 
     return balance(t);
 }
