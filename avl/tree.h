@@ -98,10 +98,9 @@ void search(avl *t, int val) {
         printf("Found it");
         return;
     }
-    else if (val > t->value)
+    if (val > t->value)
         search(t->right, val);
-    else
-        search(t->left, val);
+    search(t->left, val);
     printf("Not found it");
 }
 
