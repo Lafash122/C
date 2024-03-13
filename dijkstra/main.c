@@ -7,7 +7,7 @@
 //The function that counts path with Dijkstra's algorithm
 void dijkstra(gra *graph, int start, int finish) {
     int verts = graph->verts;
-    int overcnt= 0, pathcnt = 0;
+    int overcnt= 0;
     long long *lens = (long long *) malloc((verts + 1) * sizeof(long long));
     int *path = (int *) malloc((verts + 1) * sizeof(int));
     for (int i = 1; i <= verts; i++) {
@@ -37,9 +37,7 @@ void dijkstra(gra *graph, int start, int finish) {
             }
             nearv = nearv->next;
         }
-
     }
-
 
     for (int i = 1; i <= verts; i++) {
         long long len = lens[i];
@@ -53,7 +51,7 @@ void dijkstra(gra *graph, int start, int finish) {
     printf("\n");
 
     for (int i = 1; i <= verts; i++) {
-        if (lens[i] >= INT_MAX && lens[i] != LLONG_MAX)
+        if ((lens[i] >= INT_MAX) && (lens[i] != LLONG_MAX))
             overcnt++;
     }
 
@@ -62,7 +60,7 @@ void dijkstra(gra *graph, int start, int finish) {
         return;
     }
 
-    if ((lens[finish] > INT_MAX) && (overcnt > 2)) {
+    else if ((lens[finish] > INT_MAX) && (overcnt > 2)) {
         puts("overflow");
         return;
     }
