@@ -38,4 +38,19 @@ int ederr(int v, int s, int f, long long l) {
     return 1;
 }
 
+//The function that checks a spanning tree without algorithms
+int span(int v, int e) {
+    if (v == 0 || (v - e) > 1) {
+        puts("no spanning tree");
+        return 0;
+    }
+
+    if (v == 1) {
+        puts("");
+        return 0;
+    }
+
+    return 1;
+}
+
 #endif //PRIM_FUNCS_H
