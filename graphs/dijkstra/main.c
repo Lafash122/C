@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <malloc.h>
+#include <limits.h>
 
 #include "graph.h"
 #include "funcs.h"
@@ -76,20 +77,25 @@ void dijkstra(gra *graph, int start, int finish) {
 }
 
 int main() {
+    FILE *in = fopen("in.txt", "r");
     int vert, s, f, ed;
     scanf("%d", &vert);
     scanf("%d %d", &s, &f);
     scanf("%d", &ed);
-    if (errors(vert, s, f, ed) == 0)
+    if (!errors(vert, s, f, ed)) {
+        fclose(in);
         return 0;
+    }
 
     gra *graph = gcreate(vert);
-    int start, end, cnt = 0;
+    int start, end;
     long long len;
     for (int i = 0; i < ed; i++) {
         scanf("%d %d %lld", &start, &end, &len);
-        if (lenerr(len) == 0)
+        if (!lenerr(len)) {
+            fclose(in);
             return 0;
+        }
 
         add(graph, start, end, len);
         add(graph, end, start, len);
@@ -98,5 +104,6 @@ int main() {
     dijkstra(graph, s, f);
     free(graph);
 
+    fclose(in);
     return 0;
 }
