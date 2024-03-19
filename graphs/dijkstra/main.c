@@ -93,13 +93,6 @@ int main() {
 
         add(graph, start, end, len);
         add(graph, end, start, len);
-
-        cnt++;
-    }
-
-    if (cnt!=ed) {
-        puts("bad number of lines");
-        return 0;
     }
 
     dijkstra(graph, s, f);
