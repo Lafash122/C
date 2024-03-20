@@ -80,7 +80,7 @@ void insert(edge *q, edge *el) {
         q->next = el;
 }
 
-//The function that gives the element and remove it
+//The function that gives the element and remove it from the list
 edge *pop(edge *q) {
     if (q->next) {
         edge *tmp = q->next;
@@ -92,7 +92,7 @@ edge *pop(edge *q) {
     return q;
 }
 
-//The function that prints of the list
+//The function that prints the list
 void print(edge *l) {
     while (l) {
         printf("%d %d\n", l->src, l->dest);
