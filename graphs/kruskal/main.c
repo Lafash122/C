@@ -23,6 +23,7 @@ void kruskal(edge *stack, int verts) {
     edge *tmp = pop(stack);
     int src = tmp->src, dest = tmp->dest;
     int num = 1, size = verts - 2;
+
     insert(spantree, tmp);
     visited[src] = 1, visited[dest] = 1;
     parts[src] = num, parts[dest] = num;
@@ -30,18 +31,19 @@ void kruskal(edge *stack, int verts) {
     while (size && stack->next) {
         tmp = pop(stack);
         src = tmp->src, dest = tmp->dest;
+        num = getnum(parts, num, src, dest);
+
         if (!(visited[src] && visited[dest])) {
             insert(spantree, tmp);
             visited[src] = 1 ,visited[dest] = 1;
-            num = getnum(parts, num, src, dest);
             parts[src] = num, parts[dest] = num;
             size--;
         }
+
         else
             if (parts[src] != parts[dest]) {
                 insert(spantree, tmp);
                 visited[src] = 1 ,visited[dest] = 1;
-                num = getnum(parts, num, src, dest);
                 parts[src] = num, parts[dest] = num;
                 size--;
             }
