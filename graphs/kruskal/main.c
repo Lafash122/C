@@ -61,18 +61,17 @@ void kruskal(edge *stack, int verts) {
 }
 
 int main() {
-    int vert, ed;
+    int vert, edges;
     scanf("%d", &vert);
-    scanf("%d", &ed);
+    scanf("%d", &edges);
 
-    if (!initerr(vert, ed)) {
+    if (!initerr(vert, edges))
         return 0;
-    }
 
     edge *stack = create(0, 0, 0);
     int start, end;
     long long len;
-    for (int i = 0; i < ed; i++) {
+    for (int i = 0; i < edges; i++) {
         if (scanf("%d %d %lld", &start, &end, &len) != 3) {
             puts("bad number of lines");
             return 0;
@@ -85,7 +84,7 @@ int main() {
         insert(stack, e);
     }
 
-    if (!span(vert, ed))
+    if (!span(vert, edges))
         return 0;
 
     kruskal(stack, vert);
