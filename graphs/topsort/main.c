@@ -5,20 +5,20 @@
 
 //Modernized DFS process
 int dfs(graph *g, list *stack, int *visited, int v) {
-    visited[v] = 1;
-    list *tmp = g->first[v];
+    visited[v - 1] = 1;
+    list *tmp = g->first[v - 1];
 
     while (tmp) {
-        if (visited[tmp->vert] == 0)
+        if (visited[tmp->vert - 1] == 0)
             dfs(g, stack, visited, tmp->vert);
-        if (visited[tmp->vert] == 1)
+        if (visited[tmp->vert - 1] == 1)
             return 1;
         tmp = tmp->next;
     }
 
     free(tmp);
 
-    visited[v] = 2;
+    visited[v - 1] = 2;
     add(stack, v);
 
     return 0;
@@ -27,19 +27,19 @@ int dfs(graph *g, list *stack, int *visited, int v) {
 //A Topological sorting function
 void topsort(graph *g, int s) {
     list *stack = lcreate(0);
-    int *visited = (int *) malloc((g->verts + 1) * sizeof(int));
-    int st;
+    int *visited = (int *) malloc(g->verts * sizeof(int));
+    int stat;
 
-    for (int i = 1; i <= g->verts; i++)
+    for (int i = 0; i < g->verts; i++)
         visited[i] = 0;
 
-    st = dfs(g, stack, visited, s);
+    stat = dfs(g, stack, visited, s);
 
-    for (int i = 1; i <= g->verts; i++)
-        if (visited[i] == 0)
-            st = dfs(g, stack, visited, i);
+    for (int v = 0; v < g->verts; v++)
+        if (visited[v] == 0)
+            stat = dfs(g, stack, visited, v + 1);
 
-    if (st)
+    if (stat)
         puts("impossible to sort");
     else
         print(stack->next);
@@ -66,8 +66,8 @@ int main () {
 
     graph *g = gcreate(verts);
     int start, end, s = 0;
-    int *visited = (int *) malloc((verts + 1) * sizeof(int));
-    for (int i = 1; i <= verts; i++)
+    int *visited = (int *) malloc(verts * sizeof(int));
+    for (int i = 0; i < verts; i++)
         visited[i] = 0;
 
     for (int i = 0; i < edges; i++) {
@@ -82,13 +82,13 @@ int main () {
             return 0;
         }
 
-        ladd(g, start, end);
-        visited[end] = 1;
+        ladd(g, start - 1, end);
+        visited[end - 1] = 1;
     }
 
-    for (int i = 1; i <= verts; i++)
+    for (int i = 0; i < verts; i++)
         if (visited[i] == 0)
-            s = i;
+            s = i + 1;
 
     if (!s) {
         puts("impossible to sort");
