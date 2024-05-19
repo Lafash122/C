@@ -145,7 +145,7 @@ void encode(char *infile, char *outfile) {
     int ind = 0, code = 0;
     short num = 0;
     size = freqlist->data->freq;
-//    printf("size: %d\n", size);
+//    printf("unique symbols: %d\n", size);
     bins **codes = (bins **) malloc(size * sizeof(bins *));
     tree *freqtree = maketree(freqlist);
     codesym(freqtree, codes, num, code, &ind);
@@ -155,7 +155,7 @@ void encode(char *infile, char *outfile) {
 
 //    puts("");
 //    inorder(freqtree);
-    printf("symbols: %d\n", freqtree->freq);
+    printf("size: %d bytes\n", freqtree->freq);
 
     char sym;
     for (int i = 0; i < freqtree->freq; i++) {
