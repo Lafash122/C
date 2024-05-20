@@ -13,16 +13,16 @@ short readbits(bits *file) {
 }
 
 //Read symbol from the encoding file
-int readsym(bits *file, char *sym) {
-    *sym = 0;
+char readsym(bits *file) {
+    char sym = 0;
     for (short i = 0; i < BYTE; i++) {
-        *sym = *sym << 1;
+        sym = sym << 1;
         short bit = readbits(file);
         if (bit == 2)
             return 1;
-        *sym = *sym | bit;
+        sym = sym | bit;
     }
-    return 0;
+    return sym;
 }
 
 //Get the tree from the encoding file
@@ -31,9 +31,7 @@ tree *gettree(bits *file) {
     if (bit == 2)
         return NULL;
     if (bit == 1) {
-        char sym;
-        if (readsym(file, &sym))
-            return NULL;
+        char sym = readsym(file);
         return tcreate(sym);
     }
 
