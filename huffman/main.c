@@ -4,19 +4,15 @@
 #include "decoding.h"
 
 int main(int cnt, char *arr[]) {
-    char *mode = arr[1];
-    char *infile = arr[2];
-    char *outfile = arr[3];
-
-    if (strcmp(mode, "c") == 0) {
+    if (strcmp(arr[1], "c") == 0) {
         puts("encoding process starts");
-        encode(infile, outfile);
+        encode(arr[2], arr[3]);
         puts("successful encoding");
 
     }
-    else if (strcmp(mode, "d") == 0) {
+    else if (strcmp(arr[1], "d") == 0) {
         puts("decoding process starts");
-        decode(infile, outfile);
+        decode(arr[2], arr[3]);
         puts("successful decoding");
     }
     else
