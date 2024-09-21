@@ -1,1 +1,3 @@
-<h3>Solutions of the tasks on Programming lessons</h3>
+<h2>Solutions of the tasks on Programming lessons</h2>
+
+First semester and second semester of the first course: C programming 
